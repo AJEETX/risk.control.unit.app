@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "PhotoCaptureApp",
+    "slug": "PhotoCaptureApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
