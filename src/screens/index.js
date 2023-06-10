@@ -1,3 +1,6 @@
 export { default as StartScreen } from './StartScreen'
 export { default as LoginScreen } from './LoginScreen'
 export { default as UserLocation } from './UserLocation'
+export { default as VideoLocation } from './VideoLocation'
+export { default as Dashboard } from './Dashboard'
+export { default as UserTracker } from './UserTracker'

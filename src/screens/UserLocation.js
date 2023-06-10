@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import MapView from 'react-native-maps';
 import {
   StyleSheet,
   Text,
@@ -20,6 +21,7 @@ const UserLocation = () => {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
   }, []);
   //Camera
+  const [flashMode, setFlashMode] = useState('off')
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [hasPermission, setHasPermission] = useState(null);
   const [photoData, setPhotoData] = useState();
@@ -37,6 +39,16 @@ const UserLocation = () => {
     setHasPermission(status);
   };
 
+  const __handleFlashMode = () => {
+    if (flashMode === 'on') {
+      setFlashMode('off')
+    } else if (flashMode === 'off') {
+      setFlashMode('on')
+    } else {
+      setFlashMode('auto')
+    }
+
+  }
   const takePhoto = async () => {
     const data = await camera.current.takePictureAsync();
     setPhotoData(data);
@@ -116,7 +128,9 @@ const UserLocation = () => {
 
   if (!photoData) {
     return (
-      <Camera style={styles.container} type={type} ref={camera}>
+      <View style={styles.map_container}>
+      {gps && <MapView style={styles.map} initialRegion={{ latitude: gps.latitude, longitude:gps.longitude, latitudeDelta: .001, longitudeDelta: .001  }}/>}
+      <Camera style={styles.container} type={type} ref={camera} flashMode={flashMode}>
         <View style={styles.top}></View>
         <View style={styles.middle}>{gpsComponent}</View>
         <Button
@@ -130,11 +144,26 @@ const UserLocation = () => {
             }}>
         </Button>
         <View style={styles.bottom}>
+        <TouchableOpacity
+            onPress={__handleFlashMode}
+            style={{
+            position: 'absolute',
+            left: 35,
+            top: 35,
+            backgroundColor: flashMode === 'off' ? '#000' : '#ddd',
+            borderRadius: 70,
+            height: 60,
+            width: 60
+        }}
+        >
+            <Text style={{ fontSize: 37, left:5 }}>⚡️ </Text>
+        </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={takePhoto}>
             <View style={styles.insideButton} />
           </TouchableOpacity>
         </View>
       </Camera>
+    </View>
     );
   }
   return (
@@ -167,8 +196,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  map_container: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1, //the container will fill the whole screen.
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
   top: {
-    height: 40,
+    height: 50,
     backgroundColor: "black",
     opacity: 0.6,
   },

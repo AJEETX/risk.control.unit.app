@@ -63,7 +63,7 @@ export default function LoginScreen({ navigation }) {
 
     navigation.reset({
       index: 0,
-      routes: [{ name: 'UserLocation' }],
+      routes: [{ name: 'Dashboard' }],
     })
     // const response = await fetch(
     //   LOCAL_BASEURL,

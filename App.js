@@ -6,7 +6,10 @@ import { theme } from './src/core/theme'
 import {
   StartScreen,
   LoginScreen,
-  UserLocation
+  UserLocation,
+  VideoLocation,
+  Dashboard,
+  UserTracker
 } from './src/screens'
 
 const Stack = createStackNavigator()
@@ -24,6 +27,9 @@ export default function App() {
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="UserLocation" component={UserLocation} />
+          <Stack.Screen name="VideoLocation" component={VideoLocation} />
+          <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen name="UserTracker" component={UserTracker} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PhotoCaptureApp",
-    "slug": "PhotoCaptureApp",
+    "name": "risk-control-unit-app",
+    "slug": "risk-control-unit-app",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
