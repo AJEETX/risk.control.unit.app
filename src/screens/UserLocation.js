@@ -128,8 +128,7 @@ const UserLocation = () => {
 
   if (!photoData) {
     return (
-      <View style={styles.map_container}>
-      {gps && <MapView style={styles.map} initialRegion={{ latitude: gps.latitude, longitude:gps.longitude, latitudeDelta: .001, longitudeDelta: .001  }}/>}
+      <View style={styles.container}>
       <Camera style={styles.container} type={type} ref={camera} flashMode={flashMode}>
         <View style={styles.top}></View>
         <View style={styles.middle}>{gpsComponent}</View>
