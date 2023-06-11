@@ -91,7 +91,7 @@ export default function LoginScreen({ navigation }) {
     <Background>
       <BackButton goBack={navigation.goBack} />
       <Logo />
-      <Header>Welcome back.</Header>
+      <Header>Welcome agent.</Header>
       <TextInput
         label="Email"
         returnKeyType="next"
@@ -114,7 +114,7 @@ export default function LoginScreen({ navigation }) {
         secureTextEntry
       />
       <Button mode="contained" onPress={onLoginPressed}>
-        Login
+        sign-in
       </Button>
     </Background>
   )

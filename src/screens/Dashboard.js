@@ -24,10 +24,7 @@ export default function Dashboard({ navigation }) {
       <Button
         mode="outlined"
         onPress={() =>
-          navigation.reset({
-            index: 0,
-            routes: [{ name: "UserLocation" }],
-          })
+          navigation.navigate('UserLocation')
         }
       >
         Take Photo

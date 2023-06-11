@@ -14,13 +14,13 @@ export default function StartScreen({ navigation }) {
       <Logo />
       <Header>risk.control.unit</Header>
       <Paragraph>
-        The easiest way to start with your amazing application.
+        The easiest way to track and report the investigation.
       </Paragraph>
       <Button
         mode="contained"
         onPress={() => navigation.navigate('LoginScreen')}
       >
-        Login
+        Sign-in
       </Button>
       {/* <Button
         mode="outlined"

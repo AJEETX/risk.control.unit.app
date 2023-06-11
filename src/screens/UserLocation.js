@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import MapView from 'react-native-maps';
+import BackButton from "../components/BackButton";
+import MapView from "react-native-maps";
 import {
   StyleSheet,
   Text,
@@ -13,16 +14,15 @@ import { Camera } from "expo-camera";
 import * as Location from "expo-location";
 import { captureRef } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
-import { LogBox } from 'react-native';
+import { LogBox } from "react-native";
 
-
-const UserLocation = () => {
+const UserLocation = ({ navigation }) => {
   useEffect(() => {
-    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+    LogBox.ignoreLogs(["Animated: `useNativeDriver`"]);
   }, []);
   //Camera
-  const [flashMode, setFlashMode] = useState('off')
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [flashMode, setFlashMode] = useState("off");
+  const [type, setType] = useState(Camera.Constants.Type.front);
   const [hasPermission, setHasPermission] = useState(null);
   const [photoData, setPhotoData] = useState();
 
@@ -40,15 +40,14 @@ const UserLocation = () => {
   };
 
   const __handleFlashMode = () => {
-    if (flashMode === 'on') {
-      setFlashMode('off')
-    } else if (flashMode === 'off') {
-      setFlashMode('on')
+    if (flashMode === "on") {
+      setFlashMode("off");
+    } else if (flashMode === "off") {
+      setFlashMode("on");
     } else {
-      setFlashMode('auto')
+      setFlashMode("auto");
     }
-
-  }
+  };
   const takePhoto = async () => {
     const data = await camera.current.takePictureAsync();
     setPhotoData(data);
@@ -90,10 +89,8 @@ const UserLocation = () => {
     <View style={styles.gps}>
       {gps ? (
         <View>
-          <Text style={styles.prevBtnText}>Date : {fullDate}</Text>
-          <Text style={styles.prevBtnText}>Time : {hours}:{min}:{sec}</Text>
-          <Text style={styles.prevBtnText}>LAT: {gps.latitude} </Text>
-          <Text style={styles.prevBtnText}>LNG: {gps.longitude} </Text>
+          <Text style={styles.prevBtnText}>Date Time : {fullDate} {hours}:{min}:{sec}</Text>
+           <Text style={styles.prevBtnText}>Location : {gps.latitude} / {gps.longitude} </Text>
         </View>
       ) : (
         <View>
@@ -129,40 +126,63 @@ const UserLocation = () => {
   if (!photoData) {
     return (
       <View style={styles.container}>
-      <Camera style={styles.container} type={type} ref={camera} flashMode={flashMode}>
-        <View style={styles.top}></View>
-        <View style={styles.middle}>{gpsComponent}</View>
-        <Button
-            title="Flip Image"
-            onPress={() => {
+        <Camera
+          style={styles.container}
+          type={type}
+          ref={camera}
+          flashMode={flashMode}
+        >
+          <View style={styles.top}></View>
+          <View style={styles.middle}>{gpsComponent}</View>
+          <Button
+            title="Back "
+            onPress={() => navigation.navigate('Dashboard')}
+          ></Button>
+          <View style={styles.bottom}>
+          <TouchableOpacity
+              onPress={() => {
               setType(
                 type === Camera.Constants.Type.back
                   ? Camera.Constants.Type.front
                   : Camera.Constants.Type.back
               );
-            }}>
-        </Button>
-        <View style={styles.bottom}>
-        <TouchableOpacity
-            onPress={__handleFlashMode}
-            style={{
-            position: 'absolute',
-            left: 35,
-            top: 35,
-            backgroundColor: flashMode === 'off' ? '#000' : '#ddd',
-            borderRadius: 70,
-            height: 60,
-            width: 60
-        }}
-        >
-            <Text style={{ fontSize: 37, left:5 }}>⚡️ </Text>
-        </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={takePhoto}>
-            <View style={styles.insideButton} />
-          </TouchableOpacity>
-        </View>
-      </Camera>
-    </View>
+            }}
+              style={{
+                position: "absolute",
+                left: 50,
+                top: 30,
+                backgroundColor: type === Camera.Constants.Type.back ? "#0f0f0f" : "#f0f0f0",
+                color: type === Camera.Constants.Type.back ? "white" : "#fff",
+                borderRadius: 70,
+                height: 60,
+                width: 60,
+              }}
+            >
+              <Text style={{ fontSize: 20, left: 5, top:15, color: type === Camera.Constants.Type.back ? "white" : "black"}}> {type === Camera.Constants.Type.back
+                  ? "Front"
+                  : "Rear"}</Text>
+            </TouchableOpacity>
+          
+            <TouchableOpacity style={styles.button} onPress={takePhoto}>
+              <View style={styles.insideButton} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={__handleFlashMode}
+              style={{
+                position: "absolute",
+                right: 40,
+                top: 30,
+                backgroundColor: flashMode === "off" ? "#0f0f0f" : "#f0f0f0",
+                borderRadius: 70,
+                height: 60,
+                width: 60,
+              }}
+            >
+              <Text style={{ fontSize: 30, right: -10, top:5}}>⚡️ </Text>
+            </TouchableOpacity>
+          </View>
+        </Camera>
+      </View>
     );
   }
   return (
@@ -218,7 +238,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   bottom: {
-    height: 135,
+    height: 125,
     backgroundColor: "black",
     alignItems: "center",
     justifyContent: "center",
@@ -261,8 +281,8 @@ const styles = StyleSheet.create({
   },
   gps: {
     position: "absolute",
-    bottom: 45,
-    left: 77,
+    bottom: 15,
+    left: 15,
   },
 });
 
