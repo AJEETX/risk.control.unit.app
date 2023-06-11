@@ -28,7 +28,8 @@
     "react-native-paper": "3.6.0",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-view-shot": "3.5.0",
-    "react-native-web": "~0.18.11"
+    "react-native-web": "~0.18.11",
+    "@expo/vector-icons": "^13.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

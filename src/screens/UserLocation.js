@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import BackButton from "../components/BackButton";
+import { FontAwesome, AntDesign, Ionicons,  MaterialCommunityIcons } from '@expo/vector-icons';
 import MapView from "react-native-maps";
 import {
   StyleSheet,
@@ -97,6 +98,7 @@ const UserLocation = ({ navigation }) => {
           <Text>Waiting...</Text>
         </View>
       )}
+      <AntDesign onPress={() => navigation.navigate('Dashboard')} name="back" size={36} color="white" />
     </View>
   );
 
@@ -134,10 +136,6 @@ const UserLocation = ({ navigation }) => {
         >
           <View style={styles.top}></View>
           <View style={styles.middle}>{gpsComponent}</View>
-          <Button
-            title="Back "
-            onPress={() => navigation.navigate('Dashboard')}
-          ></Button>
           <View style={styles.bottom}>
           <TouchableOpacity
               onPress={() => {
@@ -158,13 +156,13 @@ const UserLocation = ({ navigation }) => {
                 width: 60,
               }}
             >
-              <Text style={{ fontSize: 20, left: 5, top:15, color: type === Camera.Constants.Type.back ? "white" : "black"}}> {type === Camera.Constants.Type.back
-                  ? "Front"
-                  : "Rear"}</Text>
+              <Text style={{ fontSize: 20, left: 10, top:15, color: type === Camera.Constants.Type.back ? "white" : "black"}}> {type === Camera.Constants.Type.back
+                  ? <AntDesign name="retweet" size={24} color="white" />
+                  : <AntDesign name="retweet" size={24} color="black" />
+              }</Text>
             </TouchableOpacity>
-          
             <TouchableOpacity style={styles.button} onPress={takePhoto}>
-              <View style={styles.insideButton} />
+              <FontAwesome name="camera" style={{ color: "#fff", fontSize: 40}}  />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={__handleFlashMode}
@@ -172,13 +170,14 @@ const UserLocation = ({ navigation }) => {
                 position: "absolute",
                 right: 40,
                 top: 30,
-                backgroundColor: flashMode === "off" ? "#0f0f0f" : "#f0f0f0",
                 borderRadius: 70,
                 height: 60,
                 width: 60,
               }}
             >
-              <Text style={{ fontSize: 30, right: -10, top:5}}>⚡️ </Text>
+              <Text style={{ fontSize: 30, right: -10, top:5}}>
+                <Ionicons  name= { flashMode === "off" ? "flash":"flash-off"} style={{ color: "#fff", fontSize: 40}} />
+              </Text>
             </TouchableOpacity>
           </View>
         </Camera>

@@ -7,7 +7,7 @@ import Button from "../components/Button";
 import UserTracker from "./UserTracker";
 import UserLocation from "./UserLocation";
 import { StyleSheet, View } from "react-native";
-
+import { AntDesign } from '@expo/vector-icons';
 export default function Dashboard({ navigation }) {
   return (
     <Background>
@@ -27,7 +27,7 @@ export default function Dashboard({ navigation }) {
           navigation.navigate('UserLocation')
         }
       >
-        Take Photo
+        <AntDesign name="camerao" size={28} color="green" /> Photo 
       </Button>
       <Button
         mode="outlined"
@@ -38,7 +38,7 @@ export default function Dashboard({ navigation }) {
           })
         }
       >
-        Logout
+        <AntDesign name="logout" size={24} color="green" /> Logout
       </Button>
     </Background>
   );

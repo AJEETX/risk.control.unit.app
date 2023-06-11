@@ -2,6 +2,7 @@ import React, { useEffect , useState} from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
+import { AntDesign } from '@expo/vector-icons';
 
 const LOCATION_TRACKING = "location-tracking";
 var l1;
@@ -53,11 +54,11 @@ function UserTracker() {
     <View>
       {locationStarted ? (
         <TouchableOpacity onPress={stopLocation}>
-          <Text style={styles.btnText}>Stop Tracking</Text>
+          <Text style={styles.btnText}><AntDesign name="clockcircleo" size={24} color="red" /> Log</Text>
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={startLocation}>
-          <Text style={styles.btnText}>Start Tracking</Text>
+          <Text style={styles.btnText}> <AntDesign name="clockcircleo" size={24} color="green" /> Log</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -67,12 +68,13 @@ function UserTracker() {
 const styles = StyleSheet.create({
   btnText: {
     fontSize: 20,
-    backgroundColor: "green",
-    color: "white",
+    backgroundColor: "white",
+    color: "green",
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 5,
     marginTop: 10,
+    borderColor:"#000"
   },
 });
 
