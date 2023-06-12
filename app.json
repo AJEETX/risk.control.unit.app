@@ -2,6 +2,7 @@
   "expo": {
     "name": "risk-control-unit-app",
     "slug": "risk-control-unit-app",
+    "orientation": "portrait",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
@@ -10,6 +11,14 @@
       "eas": {
         "projectId": "0ac4233b-81b6-40f2-b354-9694649c3360"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
+    ]
   }
 }

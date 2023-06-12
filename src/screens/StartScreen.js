@@ -4,11 +4,8 @@ import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Button from '../components/Button'
 import Paragraph from '../components/Paragraph'
-import { LogBox } from 'react-native';
 
 export default function StartScreen({ navigation }) {
-  LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-  
   return (
     <Background>
       <Logo />

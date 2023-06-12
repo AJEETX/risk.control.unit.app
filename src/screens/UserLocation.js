@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import BackButton from "../components/BackButton";
-import { FontAwesome, AntDesign, Ionicons,  MaterialCommunityIcons } from '@expo/vector-icons';
-import MapView from "react-native-maps";
+import { FontAwesome, AntDesign, Ionicons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Button,
   Image,
   Alert,
 } from "react-native";
@@ -15,12 +13,8 @@ import { Camera } from "expo-camera";
 import * as Location from "expo-location";
 import { captureRef } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
-import { LogBox } from "react-native";
 
 const UserLocation = ({ navigation }) => {
-  useEffect(() => {
-    LogBox.ignoreLogs(["Animated: `useNativeDriver`"]);
-  }, []);
   //Camera
   const [flashMode, setFlashMode] = useState("off");
   const [type, setType] = useState(Camera.Constants.Type.front);
@@ -40,6 +34,11 @@ const UserLocation = ({ navigation }) => {
     setHasPermission(status);
   };
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    });
+  }
   const __handleFlashMode = () => {
     if (flashMode === "on") {
       setFlashMode("off");
@@ -129,7 +128,7 @@ const UserLocation = ({ navigation }) => {
     return (
       <View style={styles.container}>
         <Camera
-          style={styles.container}
+l          style={styles.container}
           type={type}
           ref={camera}
           flashMode={flashMode}
@@ -265,7 +264,7 @@ const styles = StyleSheet.create({
   },
   prevBtn: {
     height: 65,
-    width: 145,
+    width: 105,
     backgroundColor: "#4a4a4a",
     color: "white",
     justifyContent: "center",

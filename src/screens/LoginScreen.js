@@ -9,14 +9,11 @@ import BackButton from '../components/BackButton'
 import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
-import { LogBox } from 'react-native';
 
 const LOCAL_BASEURL= 'http://localhost:5226/Account/login'
 const AZURE_BASEURL= 'https://rcu.azurewebsites.net/Account/login'
 export default function LoginScreen({ navigation }) {
-  useEffect(() => {
-    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-}, [])
+
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 

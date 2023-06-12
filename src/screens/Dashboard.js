@@ -1,13 +1,11 @@
 import React from "react";
 import Background from "../components/Background";
 import Logo from "../components/Logo";
-import Header from "../components/Header";
-import Paragraph from "../components/Paragraph";
 import Button from "../components/Button";
 import UserTracker from "./UserTracker";
-import UserLocation from "./UserLocation";
 import { StyleSheet, View } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
+
 export default function Dashboard({ navigation }) {
   return (
     <Background>
@@ -28,6 +26,22 @@ export default function Dashboard({ navigation }) {
         }
       >
         <AntDesign name="camerao" size={28} color="green" /> Photo 
+      </Button>
+      {/* <Button
+        mode="outlined"
+        onPress={() =>
+          navigation.navigate('VideoLocation')
+        }
+      >
+        <AntDesign name="videocamera" size={28} color="green" /> Video 
+      </Button> */}
+      <Button
+        mode="outlined"
+        onPress={() =>
+          navigation.navigate('VideoRecorder')
+        }
+      >
+        <AntDesign name="videocamera" size={28} color="green" /> Video (new) 
       </Button>
       <Button
         mode="outlined"

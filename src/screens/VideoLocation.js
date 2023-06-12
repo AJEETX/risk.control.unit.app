@@ -11,6 +11,7 @@ import { Camera } from "expo-camera";
 import { Video } from "expo-av";
 
 export default function VideoLocation() {
+  const [hasAudioPermission, setHasAudioPermission] = useState(null);
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
   const [isPreview, setIsPreview] = useState(false);
@@ -24,6 +25,8 @@ export default function VideoLocation() {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === "granted");
+      const audioStatus = await Camera.requestMicrophonePermissionsAsync();
+      setHasAudioPermission(audioStatus.status === 'granted');
     })();
   }, []);
 
@@ -136,6 +139,14 @@ export default function VideoLocation() {
 
   if (hasPermission === false) {
     return <Text style={styles.text}>No access to camera</Text>;
+  }
+
+  if (hasAudioPermission === null) {
+    return <View />;
+  }
+
+  if (hasAudioPermission === false) {
+    return <Text style={styles.text}>No access to audio</Text>;
   }
 
   return (
