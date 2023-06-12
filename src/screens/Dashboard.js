@@ -10,14 +10,6 @@ export default function Dashboard({ navigation }) {
   return (
     <Background>
       <Logo />
-      {/* <Header>Let’s start</Header>
-      <Paragraph>
-        Your amazing app starts here. Open you favorite code editor and start
-        editing this project.
-      </Paragraph> */}
-      {/* <View style={styles.container}>
-          <UserTracker />
-      </View> */}
       <UserTracker />
       <Button
         mode="outlined"
@@ -27,14 +19,6 @@ export default function Dashboard({ navigation }) {
       >
         <AntDesign name="camerao" size={28} color="green" /> Photo 
       </Button>
-      {/* <Button
-        mode="outlined"
-        onPress={() =>
-          navigation.navigate('VideoLocation')
-        }
-      >
-        <AntDesign name="videocamera" size={28} color="green" /> Video 
-      </Button> */}
       <Button
         mode="outlined"
         onPress={() =>

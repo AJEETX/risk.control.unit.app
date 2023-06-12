@@ -19,12 +19,6 @@ export default function StartScreen({ navigation }) {
       >
         Sign-in
       </Button>
-      {/* <Button
-        mode="outlined"
-        onPress={() => navigation.navigate('RegisterScreen')}
-      >
-        Sign Up
-      </Button> */}
     </Background>
   )
 }

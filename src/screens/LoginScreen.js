@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import React, { useState } from 'react'
 import Background from '../components/Background'
 import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
 import BackButton from '../components/BackButton'
-import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 
-const LOCAL_BASEURL= 'http://localhost:5226/Account/login'
-const AZURE_BASEURL= 'https://rcu.azurewebsites.net/Account/login'
 export default function LoginScreen({ navigation }) {
-
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 
@@ -62,28 +57,6 @@ export default function LoginScreen({ navigation }) {
       index: 0,
       routes: [{ name: 'Dashboard' }],
     })
-    // const response = await fetch(
-    //   LOCAL_BASEURL,
-    //   requestOptions
-    // )
-    // try{
-    //   const data = await response.json()
-    //   if (data !== null && data.success === 'SUCCESS') {
-    //     navigation.reset({
-    //       index: 0,
-    //       routes: [{ name: 'UserLocation' }],
-    //     })
-    //   }
-    //   else{
-    //     <Alert />
-    //   }
-    // }
-    // catch(error){
-    //   console.log(error)
-    //   throw error
-    // }
-  }
-
   return (
     <Background>
       <BackButton goBack={navigation.goBack} />
@@ -115,24 +88,4 @@ export default function LoginScreen({ navigation }) {
       </Button>
     </Background>
   )
-}
-
-const styles = StyleSheet.create({
-  forgotPassword: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginBottom: 24,
-  },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
-  forgot: {
-    fontSize: 13,
-    color: theme.colors.secondary,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-  },
-})
+}};

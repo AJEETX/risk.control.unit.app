@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react'
 import { TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { LogBox } from 'react-native';
 
 export default function BackButton({ goBack }) {
-  useEffect(() => {
-    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-  }, []);
   return (
     <TouchableOpacity onPress={goBack} style={styles.container}>
       <Image
