@@ -13,8 +13,12 @@ import { Camera } from "expo-camera";
 import * as Location from "expo-location";
 import { captureRef } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
+import { LogBox } from 'react-native';
 
 const UserLocation = ({ navigation }) => {
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
   //Camera
   const [flashMode, setFlashMode] = useState("off");
   const [type, setType] = useState(Camera.Constants.Type.front);

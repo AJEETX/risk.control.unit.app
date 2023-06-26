@@ -2,8 +2,12 @@ import React, { useEffect } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { TextInput as Input } from 'react-native-paper'
 import { theme } from '../core/theme'
+import { LogBox } from 'react-native';
 
 export default function TextInput({ errorText, description, ...props }) {
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
   return (
     <View style={styles.container}>
       <Input

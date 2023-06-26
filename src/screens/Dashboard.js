@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from 'react'
 import Background from "../components/Background";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import UserTracker from "./UserTracker";
 import { StyleSheet, View } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
+import { LogBox } from 'react-native';
 
 export default function Dashboard({ navigation }) {
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
   return (
     <Background>
       <Logo />

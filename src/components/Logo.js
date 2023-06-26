@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import { Image, StyleSheet } from 'react-native'
+import { LogBox } from 'react-native';
 
 export default function Logo() {
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
   return <Image source={require('../assets/logo1.png')} style={styles.image} />
 }
 

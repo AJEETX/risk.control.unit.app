@@ -2,8 +2,12 @@ import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { Button as PaperButton } from 'react-native-paper'
 import { theme } from '../core/theme'
+import { LogBox } from 'react-native';
 
 export default function Button({ mode, style, ...props }) {
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
   return (
     <PaperButton
       style={[

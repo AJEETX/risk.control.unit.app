@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { ImageBackground, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { theme } from '../core/theme'
+import { LogBox } from 'react-native';
 
 export default function Background({ children }) {
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
   return (
     <ImageBackground
       source={require('../assets/background_dot.png')}

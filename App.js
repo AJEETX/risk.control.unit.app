@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Provider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { LogBox } from 'react-native';
 
 import { theme } from './src/core/theme'
 import {
@@ -18,6 +19,9 @@ import {
 const Drawer = createDrawerNavigator()
 
 export default function App() {
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+}, [])
   return (
     <Provider theme={theme}>
       <NavigationContainer>
